@@ -29,7 +29,7 @@ passwords = [
 ]
 
 # Impression et enregistrement des mots de passe générés
-password_file = '/home/zeroday/Tools/passwd/password.txt'
+password_file = '' # Options d'enregistrement du fichier
 
 with open(password_file, 'w') as file:
     for pwd in passwords:
